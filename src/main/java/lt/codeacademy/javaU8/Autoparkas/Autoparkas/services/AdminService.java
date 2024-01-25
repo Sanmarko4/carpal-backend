@@ -21,4 +21,8 @@ public class AdminService {
     public List<Admin> findAllVehicles() {
         return admins;
     }
+
+    public void addAdmin(Admin a) {
+        admins.add(a);
+    }
 }

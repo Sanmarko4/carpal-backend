@@ -7,6 +7,8 @@ import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.AdminService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.DriverService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleService;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -26,19 +28,35 @@ public class HomeController {
     public List<Vehicle> showVehicles() {
         return vehicleService.findAllVehicles();
     }
+    @PostMapping("/addVehicle")
+    public void addVehicle(@RequestBody Vehicle v){
+        vehicleService.addVehicle(v);
+    }
+
+
+
 
     @GetMapping("/admins")
     public List<Admin> showAdmins() {
         return adminService.findAllVehicles();
     }
+    @PostMapping("/addAdmin")
+    public void addVehicle(@RequestBody Admin a){
+        adminService.addAdmin(a);
+    }
+
+
+
 
     @GetMapping("/drivers")
     public List<Driver> showDrivers() {
         return driverService.findAllDrivers();
     }
+    @PostMapping("/addDriver")
+    public void addDriver(@RequestBody Driver d){
+        driverService.addDriver(d);
+    }
 
-    /*@PostMapping("/create")
-    public Vehicle createVehicle(@RequestBody Vehicle v){
-        return vehicleService.addVehicle(v);
-    }*/
+
+
 }

@@ -1,6 +1,5 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Admin;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +22,8 @@ public class VehicleService {
         return vehicles;
     }
 
-    /*public Vehicle addVehicle(Vehicle v) {
-        return vehicles.add(v);
-    }*/
+
+    public void addVehicle(Vehicle v) {
+        vehicles.add(v);
+    }
 }

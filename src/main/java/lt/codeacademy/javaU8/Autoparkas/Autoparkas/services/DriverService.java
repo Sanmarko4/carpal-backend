@@ -25,5 +25,9 @@ public class DriverService {
     public List<Driver> findAllDrivers() {
         return drivers;
     }
+
+    public void addDriver(Driver d) {
+        drivers.add(d);
+    }
 }
 
