@@ -41,7 +41,7 @@ public class DriverService {
         }
     }
     public void deleteDriver(Long id) {
-        getByID(id).ifPresent(driver -> drivers.remove(driver));
+        getByID(id).ifPresent(driverToDelete -> drivers.remove(driverToDelete));
     }
 
     private Long getAvailableId() {

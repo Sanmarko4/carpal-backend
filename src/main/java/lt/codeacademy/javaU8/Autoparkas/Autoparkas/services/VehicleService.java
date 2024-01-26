@@ -46,7 +46,7 @@ public class VehicleService {
         }
     }
     public void deleteVehicle(Long id) {
-        getByID(id).ifPresent(vehicle -> vehicles.remove(vehicle));
+        getByID(id).ifPresent(vehicleToDelete -> vehicles.remove(vehicleToDelete));
     }
     /*public void deleteVehicle(Long id) { //ALTERNATYVUS DESTYTOJO METODAS
         Optional<Vehicle> box = getByID(id);

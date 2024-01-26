@@ -41,7 +41,7 @@ public class AdminService {
         }
     }
     public void deleteAdmin(Long id) {
-        getByID(id).ifPresent(admin -> admins.remove(admin));
+        getByID(id).ifPresent(adminToDelete -> admins.remove(adminToDelete));
     }
 
     private Long getAvailableId() {
