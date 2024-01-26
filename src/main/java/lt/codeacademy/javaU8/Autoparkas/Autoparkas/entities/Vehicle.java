@@ -1,11 +1,16 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities;
 
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 
-
+@Entity
 public class Vehicle {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @NotBlank(message = "All fields are mandatory!")
     private String make, model, year, color, plateNumber, vin, insurenceExpiryDate, inspectionExpiryDate, nextServiceDate;

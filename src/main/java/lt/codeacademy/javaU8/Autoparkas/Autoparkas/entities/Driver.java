@@ -1,15 +1,18 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities;
 
 
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
-
+@Entity
 public class Driver {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @NotBlank(message = "All fields are mandatory!")
     private String firstName, secondName, driverLicenseNumber, licenseExpiryDate;
-
+    @OneToOne
+    @JoinColumn(name = "driver_id")
     private Vehicle vehicle;
 
     public Driver() {
