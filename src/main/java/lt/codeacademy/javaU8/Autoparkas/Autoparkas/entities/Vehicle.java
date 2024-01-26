@@ -10,8 +10,6 @@ public class Vehicle {
     @NotBlank(message = "All fields are mandatory!")
     private String make, model, year, color, plateNumber, vin, insurenceExpiryDate, inspectionExpiryDate, nextServiceDate;
 
-    private Driver driver;
-
     public Vehicle() {
     }
 
@@ -105,13 +103,5 @@ public class Vehicle {
 
     public void setNextServiceDate(String nextServiceDate) {
         this.nextServiceDate = nextServiceDate;
-    }
-
-    public Driver getDriver() {
-        return driver;
-    }
-
-    public void setDriver(Driver driver) {
-        this.driver = driver;
     }
 }

@@ -2,11 +2,10 @@ package lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities;
 
 
 import jakarta.validation.constraints.NotBlank;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class Admin {
+public class User {
 
     private long id;
     @NotBlank(message = "All fields are mandatory!")
@@ -16,10 +15,10 @@ public class Admin {
 
     private List<Driver> drivers;
 
-    public Admin() {
+    public User() {
     }
 
-    public Admin(String firstName, String secondName, String licenseNumber, String licenseExpiryDate) {
+    public User(String firstName, String secondName, String licenseNumber, String licenseExpiryDate) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.licenseNumber = licenseNumber;

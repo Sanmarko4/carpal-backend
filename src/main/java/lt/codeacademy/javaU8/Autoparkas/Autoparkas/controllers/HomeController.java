@@ -1,9 +1,9 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas.controllers;
 
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Admin;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.User;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.AdminService;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.UserService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.DriverService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleService;
 import org.springframework.web.bind.annotation.*;
@@ -12,12 +12,12 @@ import java.util.List;
 @RestController
 public class HomeController {
     DriverService driverService;
-    AdminService adminService;
+    UserService userService;
     VehicleService vehicleService;
 
-    public HomeController(DriverService driverService, AdminService adminService, VehicleService vehicleService){
+    public HomeController(DriverService driverService, UserService userService, VehicleService vehicleService){
         this.driverService = driverService;
-        this.adminService = adminService;
+        this.userService = userService;
         this.vehicleService = vehicleService;
     }
 
@@ -43,24 +43,24 @@ public class HomeController {
     }
 
     //===========================
-    //===== ADMIN METHODS =======
+    //====== USER METHODS =======
     //===========================
 
-    @GetMapping("/admins")
-    public List<Admin> showAdmins() {
-        return adminService.findAllAdmins();
+    @GetMapping("/users")
+    public List<User> showUsers() {
+        return userService.findAllUsers();
     }
-    @PostMapping("/addAdmin")
-    public void addAdmin(@RequestBody Admin admin){
-        adminService.addAdmin(admin);
+    @PostMapping("/addUser")
+    public void addUser(@RequestBody User user){
+        userService.addUser(user);
     }
-    @PutMapping("/updateAdmin")
-    public void updateAdmin(@RequestBody Admin admin){
-        adminService.updateAdmin(admin);
+    @PutMapping("/updateUser")
+    public void updateUser(@RequestBody User user){
+        userService.updateUser(user);
     }
-    @DeleteMapping("/deleteAdmin/{id}")
-    public void deleteAdmin(@PathVariable Long id) {
-        adminService.deleteAdmin(id);
+    @DeleteMapping("/deleteUser/{id}")
+    public void deleteUser(@PathVariable Long id) {
+        userService.deleteUser(id);
     }
 
     //===========================
