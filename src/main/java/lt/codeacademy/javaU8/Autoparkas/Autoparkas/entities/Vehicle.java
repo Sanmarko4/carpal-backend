@@ -8,20 +8,20 @@ public class Vehicle {
 
     private long id;
     @NotBlank(message = "All fields are mandatory!")
-    private String make, model, year, color, registrationLicenseNumber, vinCode, insurenceExpiryDate, inspectionExpiryDate, nextServiceDate;
+    private String make, model, year, color, plateNumber, vin, insurenceExpiryDate, inspectionExpiryDate, nextServiceDate;
 
     private Driver driver;
 
     public Vehicle() {
     }
 
-    public Vehicle(String make, String model, String year, String color, String registrationLicenseNumber, String vinCode, String insurenceExpiryDate, String inspectionExpiryDate, String nextServiceDate) {
+    public Vehicle(String make, String model, String year, String color, String plateNumber, String vin, String insurenceExpiryDate, String inspectionExpiryDate, String nextServiceDate) {
         this.make = make;
         this.model = model;
         this.year = year;
         this.color = color;
-        this.registrationLicenseNumber = registrationLicenseNumber;
-        this.vinCode = vinCode;
+        this.plateNumber = plateNumber;
+        this.vin = vin;
         this.insurenceExpiryDate = insurenceExpiryDate;
         this.inspectionExpiryDate = inspectionExpiryDate;
         this.nextServiceDate = nextServiceDate;
@@ -67,20 +67,20 @@ public class Vehicle {
         this.color = color;
     }
 
-    public String getRegistrationLicenseNumber() {
-        return registrationLicenseNumber;
+    public String getPlateNumber() {
+        return plateNumber;
     }
 
-    public void setRegistrationLicenseNumber(String registrationLicenseNumber) {
-        this.registrationLicenseNumber = registrationLicenseNumber;
+    public void setPlateNumber(String plateNumber) {
+        this.plateNumber = plateNumber;
     }
 
-    public String getVinCode() {
-        return vinCode;
+    public String getVin() {
+        return vin;
     }
 
-    public void setVinCode(String vinCode) {
-        this.vinCode = vinCode;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 
     public String getInsurenceExpiryDate() {

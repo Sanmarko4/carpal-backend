@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class DriverService {
@@ -12,22 +13,51 @@ public class DriverService {
 
     public DriverService() {
         drivers = new ArrayList<>();
-        drivers.add(new Driver("Jonas", "Jonaitis", "6235495", "2024-05-20"));
-        drivers.add(new Driver("Petras", "Petraitis", "79945352", "2026-05-20"));
-        drivers.add(new Driver("Kazys", "Kaziukaitis", "14568769", "2024-07-20"));
-        drivers.add(new Driver("Marius", "Mariukas", "08734521", "2030-02-10"));
-    }
-
-    public List<Driver> findAll() {
-        return drivers;
+        addDriver(new Driver("Jonas", "Jonaitis", "6235495", "2024-05-20"));
+        addDriver(new Driver("Petras", "Petraitis", "79945352", "2026-05-20"));
+        addDriver(new Driver("Kazys", "Kaziukaitis", "14568769", "2024-07-20"));
+        addDriver(new Driver("Marius", "Mariukas", "08734521", "2030-02-10"));
     }
 
     public List<Driver> findAllDrivers() {
         return drivers;
     }
 
-    public void addDriver(Driver d) {
-        drivers.add(d);
+    public Driver addDriver(Driver driver) {
+        driver.setId(getAvailableId());
+        drivers.add(driver);
+        return driver;
+    }
+
+    public void updateDriver(Driver newDriver) {
+        for (Driver oldDriver : drivers) {
+            if (oldDriver.getId() == (newDriver.getId())) {
+                oldDriver.setFirstName(newDriver.getFirstName());
+                oldDriver.setSecondName(newDriver.getSecondName());
+                oldDriver.setDriverLicenseNumber(newDriver.getDriverLicenseNumber());
+                oldDriver.setLicenseExpiryDate(newDriver.getLicenseExpiryDate());
+                break;
+            }
+        }
+    }
+    public void deleteDriver(Long id) {
+        getByID(id).ifPresent(driver -> drivers.remove(driver));
+    }
+
+    private Long getAvailableId() {
+        if (drivers.isEmpty()) {
+            return 0L;
+        }
+        return drivers.getLast().getId() + 1;
+    }
+
+    public Optional<Driver> getByID(Long id){
+        for (Driver oldDriver : drivers) {
+            if (oldDriver.getId() == (id)) {
+                return Optional.of(oldDriver);
+            }
+        }
+        return Optional.empty();
     }
 }
 
