@@ -12,9 +12,6 @@ public class User {
     private long id;
     @NotBlank(message = "All fields are mandatory!")
     private String firstName, secondName, licenseNumber, licenseExpiryDate;
-    @OneToMany
-    @JoinColumn(name = "user_id")
-    private List<Vehicle> vehicles;
 
     @OneToMany
     @JoinColumn(name = "user_id")
@@ -68,14 +65,6 @@ public class User {
 
     public void setLicenseExpiryDate(String licenseExpiryDate) {
         this.licenseExpiryDate = licenseExpiryDate;
-    }
-
-    public List<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-    public void setVehicles(List<Vehicle> vehicles) {
-        this.vehicles = vehicles;
     }
 
     public List<Driver> getDrivers() {
