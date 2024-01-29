@@ -2,6 +2,7 @@ package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.User;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.UserRepository;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ import java.util.Optional;
 @Service
 public class UserService {
     UserRepository userRepository;
+
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
     /*List<User> users;
 
     public UserService() {

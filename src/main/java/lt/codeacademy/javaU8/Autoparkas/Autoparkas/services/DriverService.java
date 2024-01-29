@@ -2,6 +2,7 @@ package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.DriverRepository;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -11,6 +12,10 @@ import java.util.Optional;
 @Service
 public class DriverService {
     DriverRepository driverRepository;
+
+    public DriverService(DriverRepository driverRepository) {
+        this.driverRepository = driverRepository;
+    }
 
     /*List<Driver> drivers;
 

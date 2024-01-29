@@ -2,6 +2,7 @@ package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,8 +11,12 @@ import java.util.Optional;
 
 @Service
 public class VehicleService {
-
     VehicleRepository vehicleRepository;
+
+    public VehicleService(VehicleRepository vehicleRepository) {
+        this.vehicleRepository = vehicleRepository;
+    }
+
     /*List<Vehicle> vehicles;
 
     public VehicleService() {

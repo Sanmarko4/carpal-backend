@@ -13,7 +13,7 @@ public class User {
     @NotBlank(message = "All fields are mandatory!")
     private String firstName, secondName, licenseNumber, licenseExpiryDate;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
     private List<Driver> drivers;
 
