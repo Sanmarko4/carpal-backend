@@ -76,6 +76,19 @@ public class VehicleService {
     public void deleteVehicle(Long id) {
         vehicleRepository.findById(id).ifPresent(vehicleToDelete -> vehicleRepository.delete(vehicleToDelete));
     }
+
+    public void deleteVehicles() {
+        vehicleRepository.deleteAll();
+    }
+
+    public void seperateVehicle(Vehicle newV) {
+        vehicleRepository.findById(newV.getId()).ifPresent(oldV -> {
+            oldV.setDriver(null);
+            vehicleRepository.save(oldV);
+        });
+    }
+
+
     /*public void deleteVehicle(Long id) {
         getByID(id).ifPresent(vehicleToDelete -> vehicles.remove(vehicleToDelete));
     }*/

@@ -66,6 +66,11 @@ public class DriverService {
     public void deleteDriver(Long id) {
         driverRepository.findById(id).ifPresent(driverToDelete -> driverRepository.delete(driverToDelete));
     }
+
+    public void deleteDrivers() {
+        driverRepository.deleteAll();
+    }
+
     /*public void deleteDriver(Long id) {
         getByID(id).ifPresent(driverToDelete -> drivers.remove(driverToDelete));
     }*/

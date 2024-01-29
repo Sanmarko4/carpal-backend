@@ -66,6 +66,17 @@ public class UserService {
     public void deleteUser(Long id) {
         userRepository.findById(id).ifPresent(userToDelete -> userRepository.delete(userToDelete));
     }
+
+    public void deleteUsers() {
+        userRepository.deleteAll();
+    }
+
+    public void seperateDriver(User newUser) {
+        userRepository.findById(newUser.getId()).ifPresent(oldUser -> {
+            oldUser.setDrivers(null);
+            userRepository.save(oldUser);
+        });
+    }
     /*public void deleteUser(Long id) {
         getByID(id).ifPresent(userToDelete -> users.remove(userToDelete));
     }*/

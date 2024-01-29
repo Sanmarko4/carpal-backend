@@ -29,15 +29,19 @@ public class HomeController {
     public List<Vehicle> showVehicles() {
         return vehicleService.findAllVehicles();
     }
-    @PostMapping("/addVehicle")
+    @PostMapping("/addvehicle")
     public Vehicle addVehicle(@RequestBody Vehicle vehicle){
         return vehicleService.addVehicle(vehicle);
     }
-    @PutMapping("/updateVehicle")
+    @PutMapping("/updatevehicle")
     public void updateVehicle(@RequestBody Vehicle vehicle){
         vehicleService.updateVehicle(vehicle);
     }
-    @DeleteMapping("/deleteVehicle/{id}")
+    @PutMapping("/seperatevehiclefromdriver")
+    public void seperateVehicle(@RequestBody Vehicle vehicle){
+        vehicleService.seperateVehicle(vehicle);
+    }
+    @DeleteMapping("/deletevehicle/{id}")
     public void deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
     }
@@ -50,15 +54,19 @@ public class HomeController {
     public List<User> showUsers() {
         return userService.findAllUsers();
     }
-    @PostMapping("/addUser")
+    @PostMapping("/adduser")
     public void addUser(@RequestBody User user){
         userService.addUser(user);
     }
-    @PutMapping("/updateUser")
+    @PutMapping("/updateuser")
     public void updateUser(@RequestBody User user){
         userService.updateUser(user);
     }
-    @DeleteMapping("/deleteUser/{id}")
+    @PutMapping("/seperatedriverfromuser")
+    public void seperateDriver(@RequestBody User user){
+        userService.seperateDriver(user);
+    }
+    @DeleteMapping("/deleteuser/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUser(id);
     }
@@ -71,17 +79,28 @@ public class HomeController {
     public List<Driver> showDrivers() {
         return driverService.findAllDrivers();
     }
-    @PostMapping("/addDriver")
+    @PostMapping("/adddriver")
     public void addDriver(@RequestBody Driver d){
         driverService.addDriver(d);
     }
-    @PutMapping("/updateDriver")
+    @PutMapping("/updatedriver")
     public void updateDriver(@RequestBody Driver driver){
         driverService.updateDriver(driver);
     }
-    @DeleteMapping("/deleteDriver/{id}")
+    @DeleteMapping("/deletedriver/{id}")
     public void deleteDriver(@PathVariable Long id) {
         driverService.deleteDriver(id);
+    }
+
+    //===========================
+    //==== DATABASE METHODS =====
+    //===========================
+
+    @DeleteMapping("/deleteall")
+    public void deleteAllData() {
+        userService.deleteUsers();
+        vehicleService.deleteVehicles();
+        driverService.deleteDrivers();
     }
 
 
