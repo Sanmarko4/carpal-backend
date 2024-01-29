@@ -11,9 +11,6 @@ public class Driver {
     private long id;
     @NotBlank(message = "All fields are mandatory!")
     private String firstName, secondName, driverLicenseNumber, licenseExpiryDate;
-    @OneToOne
-    @JoinColumn(name = "driver_id")
-    private Vehicle vehicle;
 
     public Driver() {
     }
@@ -63,13 +60,5 @@ public class Driver {
 
     public void setLicenseExpiryDate(String licenseExpiryDate) {
         this.licenseExpiryDate = licenseExpiryDate;
-    }
-
-    public Vehicle getVehicle() {
-        return vehicle;
-    }
-
-    public void setVehicle(Vehicle vehicle) {
-        this.vehicle = vehicle;
     }
 }

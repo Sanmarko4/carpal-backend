@@ -1,10 +1,7 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
@@ -14,6 +11,10 @@ public class Vehicle {
     private long id;
     @NotBlank(message = "All fields are mandatory!")
     private String make, model, year, color, plateNumber, vin, insurenceExpiryDate, inspectionExpiryDate, nextServiceDate;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "driver_id")
+    private Driver driver;
 
     public Vehicle() {
     }
@@ -108,5 +109,13 @@ public class Vehicle {
 
     public void setNextServiceDate(String nextServiceDate) {
         this.nextServiceDate = nextServiceDate;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
     }
 }

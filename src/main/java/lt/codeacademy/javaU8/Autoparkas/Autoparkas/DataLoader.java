@@ -53,25 +53,25 @@ public class DataLoader implements CommandLineRunner {
         User indre = new User("Indrė", "Razvanovičiutė", "13465276", "2024-07-20");
         User ilona = new User("Ilona", "Čeponė", "1324565", "2030-02-10");
 
+        audi.setDriver(jonas);
+        bmw5.setDriver(petras);
+        bmw3.setDriver(kazys);
+        mercedes.setDriver(marius);
+
         List<Driver> tomoD = new ArrayList<>();
         tomoD.add(jonas);
         tomoD.add(petras);
         List<Driver> agnesD = new ArrayList<>();
-        tomoD.add(kazys);
+        agnesD.add(kazys);
         List<Driver> indresD = new ArrayList<>();
-        tomoD.add(marius);
+        indresD.add(marius);
 
         tomas.setDrivers(tomoD);
         agne.setDrivers(agnesD);
         indre.setDrivers(indresD);
 
-        jonas.setVehicle(audi);
-        petras.setVehicle(bmw5);
-        kazys.setVehicle(bmw3);
-        marius.setVehicle(mercedes);
-
-        vehicleRepository.saveAll(Arrays.asList(audi, bmw3, bmw5, mercedes));
         driverRepository.saveAll(Arrays.asList(jonas, petras, kazys, marius));
+        vehicleRepository.saveAll(Arrays.asList(audi, bmw3, bmw5, mercedes));
         userRepository.saveAll(Arrays.asList(tomas, agne, indre, ilona));
 
     }
