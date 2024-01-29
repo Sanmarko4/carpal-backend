@@ -43,7 +43,18 @@ public class VehicleService {
     }*/
 
     public void updateVehicle(Vehicle newV) {
-        vehicleRepository.findById(newV.getId()).ifPresent(vehicleToUpdate -> vehicleRepository.save(vehicleToUpdate));
+        vehicleRepository.findById(newV.getId()).ifPresent(oldV -> {
+            oldV.setMake(newV.getMake());
+            oldV.setModel(newV.getModel());
+            oldV.setYear(newV.getYear());
+            oldV.setColor(newV.getColor());
+            oldV.setPlateNumber(newV.getPlateNumber());
+            oldV.setVin(newV.getVin());
+            oldV.setInsurenceExpiryDate(newV.getInsurenceExpiryDate());
+            oldV.setInspectionExpiryDate(newV.getInspectionExpiryDate());
+            oldV.setNextServiceDate(newV.getNextServiceDate());
+            vehicleRepository.save(oldV);
+        });
     }
     /*public void updateVehicle(Vehicle newV) {
         for (Vehicle oldV : vehicles) {

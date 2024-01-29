@@ -1,6 +1,7 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.User;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.UserRepository;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleRepository;
 import org.springframework.stereotype.Service;
@@ -41,8 +42,15 @@ public class UserService {
     }*/
 
     public void updateUser(User newUser) {
-        userRepository.findById(newUser.getId()).ifPresent(userToUpdate -> userRepository.save(userToUpdate));
+        userRepository.findById(newUser.getId()).ifPresent(oldUser -> {
+            oldUser.setFirstName(newUser.getFirstName());
+            oldUser.setSecondName(newUser.getSecondName());
+            oldUser.setLicenseNumber(newUser.getLicenseNumber());
+            oldUser.setLicenseExpiryDate(newUser.getLicenseExpiryDate());
+            userRepository.save(oldUser);
+        });
     }
+
     /*public void updateUser(User newUser) {
         for (User oldUser : users) {
             if (oldUser.getId() == (newUser.getId())) {

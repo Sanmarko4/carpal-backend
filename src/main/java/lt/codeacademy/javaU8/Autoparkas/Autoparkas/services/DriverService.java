@@ -43,7 +43,13 @@ public class DriverService {
         return driver;
     }*/
     public void updateDriver(Driver newDriver) {
-        driverRepository.findById(newDriver.getId()).ifPresent(driverToUpdate -> driverRepository.save(driverToUpdate));
+        driverRepository.findById(newDriver.getId()).ifPresent(oldDriver -> {
+            oldDriver.setFirstName(newDriver.getFirstName());
+            oldDriver.setSecondName(newDriver.getSecondName());
+            oldDriver.setDriverLicenseNumber(newDriver.getDriverLicenseNumber());
+            oldDriver.setLicenseExpiryDate(newDriver.getLicenseExpiryDate());
+            driverRepository.save(oldDriver);
+        });
     }
     /*public void updateDriver(Driver newDriver) {
         for (Driver oldDriver : drivers) {
