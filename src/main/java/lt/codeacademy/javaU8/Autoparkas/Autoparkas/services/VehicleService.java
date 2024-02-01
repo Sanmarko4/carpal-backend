@@ -53,6 +53,7 @@ public class VehicleService {
             oldV.setInsurenceExpiryDate(newV.getInsurenceExpiryDate());
             oldV.setInspectionExpiryDate(newV.getInspectionExpiryDate());
             oldV.setNextServiceDate(newV.getNextServiceDate());
+            oldV.setDriver(newV.getDriver());
             vehicleRepository.save(oldV);
         });
     }
