@@ -9,6 +9,7 @@ import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin
 @RestController
 public class HomeController {
     DriverService driverService;
