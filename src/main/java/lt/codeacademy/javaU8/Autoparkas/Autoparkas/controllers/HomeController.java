@@ -80,6 +80,10 @@ public class HomeController {
     public List<Driver> showDrivers() {
         return driverService.findAllDrivers();
     }
+    @GetMapping("/availabledrivers")
+    public List<Driver> showAvailableDrivers() {
+        return driverService.findAvailableDrivers();
+    }
     @PostMapping("/adddriver")
     public void addDriver(@RequestBody Driver d){
         driverService.addDriver(d);

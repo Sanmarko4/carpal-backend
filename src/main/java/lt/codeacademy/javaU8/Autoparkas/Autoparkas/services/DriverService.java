@@ -3,6 +3,8 @@ package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.DriverRepository;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.UserRepository;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,9 +14,11 @@ import java.util.Optional;
 @Service
 public class DriverService {
     DriverRepository driverRepository;
+    VehicleRepository vehicleRepository;
 
-    public DriverService(DriverRepository driverRepository) {
+    public DriverService(DriverRepository driverRepository, VehicleRepository vehicleRepository) {
         this.driverRepository = driverRepository;
+        this.vehicleRepository = vehicleRepository;
     }
 
     /*List<Driver> drivers;
@@ -34,9 +38,22 @@ public class DriverService {
         return drivers;
     }*/
 
+    public List<Driver> findAvailableDrivers() {
+        List<Driver> allDrivers = findAllDrivers();
+        List<Driver> availableDrivers = new ArrayList<>();
+        for (Driver driver : allDrivers) {
+            boolean isAssignedToVehicle = vehicleRepository.existsByDriver(driver);
+            if (!isAssignedToVehicle) {
+                availableDrivers.add(driver);
+            }
+        }
+        return availableDrivers;
+    }
+
     public Driver addDriver(Driver driver) {
         return driverRepository.save(driver);
     }
+
     /*public Driver addDriver(Driver driver) {
         driver.setId(getAvailableId());
         drivers.add(driver);
@@ -70,6 +87,8 @@ public class DriverService {
     public void deleteDrivers() {
         driverRepository.deleteAll();
     }
+
+
 
     /*public void deleteDriver(Long id) {
         getByID(id).ifPresent(driverToDelete -> drivers.remove(driverToDelete));
