@@ -5,6 +5,7 @@ import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.UserService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.DriverService;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleMakeService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,11 +16,13 @@ public class HomeController {
     DriverService driverService;
     UserService userService;
     VehicleService vehicleService;
+    VehicleMakeService vehicleMakeService;
 
-    public HomeController(DriverService driverService, UserService userService, VehicleService vehicleService){
+    public HomeController(DriverService driverService, UserService userService, VehicleService vehicleService, VehicleMakeService vehicleMakeService){
         this.driverService = driverService;
         this.userService = userService;
         this.vehicleService = vehicleService;
+        this.vehicleMakeService = vehicleMakeService;
     }
 
     //===========================
@@ -45,6 +48,10 @@ public class HomeController {
     @DeleteMapping("/deletevehicle/{id}")
     public void deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
+    }
+    @GetMapping("/vehiclemakes")
+    public List<String> getVehicleMakes() {
+        return vehicleMakeService.getVehicleMakes();
     }
 
     //===========================
