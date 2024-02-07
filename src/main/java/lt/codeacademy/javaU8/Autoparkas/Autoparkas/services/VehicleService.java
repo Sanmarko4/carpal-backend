@@ -1,46 +1,34 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Make;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Model;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleMakeRepository;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleModelRepository;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class VehicleService {
     VehicleRepository vehicleRepository;
+    VehicleMakeRepository vehicleMakeRepository;
+    VehicleModelRepository vehicleModelRepository;
 
-    public VehicleService(VehicleRepository vehicleRepository) {
+    public VehicleService(VehicleRepository vehicleRepository, VehicleMakeRepository vehicleMakeRepository, VehicleModelRepository vehicleModelRepository) {
         this.vehicleRepository = vehicleRepository;
+        this.vehicleMakeRepository = vehicleMakeRepository;
+        this.vehicleModelRepository = vehicleModelRepository;
     }
 
-    /*List<Vehicle> vehicles;
-
-    public VehicleService() {
-        vehicles = new ArrayList<>();
-        addVehicle(new Vehicle("Audi", "A1", "2011", "black", "LMR242", "WAUZZ4654832", "2024-12-14", "2025-12-20", "2024-05-17"));
-        addVehicle(new Vehicle("BMW", "525i", "2007", "blue", "MCO842", "WBA86y386955", "2024-12-20", "2025-11-15", "2024-08-19"));
-        addVehicle(new Vehicle("BMW", "328i", "1995", "silver", "EBB752", "WBA7579032034", "2023-09-14", "2025-08-20", "2024-08-14"));
-        addVehicle(new Vehicle("Mercedes Benz", "CL500", "2001", "blue", "NGR666", "WAUZZ436732", "2024-11-14", "2022-01-20", "2022-03-10"));
-    }*/
     public List<Vehicle> findAllVehicles() {
         return vehicleRepository.findAll();
     }
-   /*public List<Vehicle> findAllVehicles() {
-        return vehicles;
-    }*/
 
     public Vehicle addVehicle(Vehicle vehicle) {
         return vehicleRepository.save(vehicle);
     }
-    /*public Vehicle addVehicle(Vehicle vehicle) {
-        vehicle.setId(getAvailableId());
-        vehicles.add(vehicle);
-        return vehicle;
-    }*/
 
     public void updateVehicle(Vehicle newV) {
         vehicleRepository.findById(newV.getId()).ifPresent(oldV -> {
@@ -57,6 +45,75 @@ public class VehicleService {
             vehicleRepository.save(oldV);
         });
     }
+
+    public void deleteVehicle(Long id) {
+        vehicleRepository.findById(id).ifPresent(vehicleToDelete -> vehicleRepository.delete(vehicleToDelete));
+    }
+
+    public void deleteVehicles() {
+        vehicleRepository.deleteAll();
+    }
+
+    public void deleteVehiclesData(){
+        vehicleMakeRepository.deleteAll();
+        vehicleModelRepository.deleteAll();
+    }
+    public void seperateVehicle(Vehicle newV) {
+        vehicleRepository.findById(newV.getId()).ifPresent(oldV -> {
+            oldV.setDriver(null);
+            vehicleRepository.save(oldV);
+        });
+    }
+
+    //========================================
+    //===== VEHICLE MAKE & MODEL METHODS =====
+    //========================================
+
+    public void saveMakeAndModel(String makeName, String modelName) {
+        Make make = vehicleMakeRepository.findByName(makeName);
+        if (make == null) {
+            make = new Make();
+            make.setName(makeName);
+            make = vehicleMakeRepository.save(make);
+        }
+
+        Model existingModel = vehicleModelRepository.findByMakeAndName(make, modelName);
+        if (existingModel == null) {
+            Model model = new Model();
+            model.setName(modelName);
+            model.setMake(make);
+            vehicleModelRepository.save(model);
+        }
+    }
+
+    public List<String> getAllMakes() {
+        return vehicleMakeRepository.findAllMakes();
+    }
+
+    public List<String> getModelsForMake(String make) {
+        return vehicleModelRepository.findModelsByMake(make);
+    }
+
+    /*List<Vehicle> vehicles;
+
+    public VehicleService() {
+        vehicles = new ArrayList<>();
+        addVehicle(new Vehicle("Audi", "A1", "2011", "black", "LMR242", "WAUZZ4654832", "2024-12-14", "2025-12-20", "2024-05-17"));
+        addVehicle(new Vehicle("BMW", "525i", "2007", "blue", "MCO842", "WBA86y386955", "2024-12-20", "2025-11-15", "2024-08-19"));
+        addVehicle(new Vehicle("BMW", "328i", "1995", "silver", "EBB752", "WBA7579032034", "2023-09-14", "2025-08-20", "2024-08-14"));
+        addVehicle(new Vehicle("Mercedes Benz", "CL500", "2001", "blue", "NGR666", "WAUZZ436732", "2024-11-14", "2022-01-20", "2022-03-10"));
+    }*/
+
+    /*public List<Vehicle> findAllVehicles() {
+        return vehicles;
+    }*/
+
+    /*public Vehicle addVehicle(Vehicle vehicle) {
+        vehicle.setId(getAvailableId());
+        vehicles.add(vehicle);
+        return vehicle;
+    }*/
+
     /*public void updateVehicle(Vehicle newV) {
         for (Vehicle oldV : vehicles) {
             if (oldV.getId() == (newV.getId())) {
@@ -73,22 +130,6 @@ public class VehicleService {
             }
         }
     }*/
-
-    public void deleteVehicle(Long id) {
-        vehicleRepository.findById(id).ifPresent(vehicleToDelete -> vehicleRepository.delete(vehicleToDelete));
-    }
-
-    public void deleteVehicles() {
-        vehicleRepository.deleteAll();
-    }
-
-    public void seperateVehicle(Vehicle newV) {
-        vehicleRepository.findById(newV.getId()).ifPresent(oldV -> {
-            oldV.setDriver(null);
-            vehicleRepository.save(oldV);
-        });
-    }
-
 
     /*public void deleteVehicle(Long id) {
         getByID(id).ifPresent(vehicleToDelete -> vehicles.remove(vehicleToDelete));

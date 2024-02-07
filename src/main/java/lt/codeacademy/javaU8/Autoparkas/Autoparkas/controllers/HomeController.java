@@ -3,27 +3,24 @@ package lt.codeacademy.javaU8.Autoparkas.Autoparkas.controllers;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.User;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.DriverService;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.UserService;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleMakeService;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleService;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.*;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+
 @CrossOrigin
 @RestController
 public class HomeController {
+
+    //Address to test with swagger: http://localhost:8080/swagger-ui/index.html
     DriverService driverService;
     UserService userService;
     VehicleService vehicleService;
 
-    VehicleMakeService vehicleMakeService;
-
-    public HomeController(DriverService driverService, UserService userService, VehicleService vehicleService, VehicleMakeService vehicleMakeService){
+    public HomeController(DriverService driverService, UserService userService, VehicleService vehicleService){
         this.driverService = driverService;
         this.userService = userService;
         this.vehicleService = vehicleService;
-        this.vehicleMakeService = vehicleMakeService;
     }
 
     //===========================
@@ -33,14 +30,6 @@ public class HomeController {
     @GetMapping("/vehicles")
     public List<Vehicle> showVehicles() {
         return vehicleService.findAllVehicles();
-    }
-    @GetMapping("/vehiclemakes")
-    public List<String> showAllMakes() {
-        return vehicleMakeService.getVehicleMakes();
-    }
-    @GetMapping("/vehiclemodels/{make}")
-    public List<String> showAvailableModels(@PathVariable("make") String make) {
-        return vehicleMakeService.getModelsForMake(make);
     }
     @PostMapping("/addvehicle")
     public Vehicle addVehicle(@RequestBody Vehicle vehicle){
@@ -57,6 +46,23 @@ public class HomeController {
     @DeleteMapping("/deletevehicle/{id}")
     public void deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
+    }
+
+    //========================================
+    //===== VEHICLE MAKE & MODEL METHODS =====
+    //========================================
+
+    @PostMapping("/savemakemodel")
+    public void saveMakeAndModel(@RequestParam String makeName, @RequestBody String modelName) {
+        vehicleService.saveMakeAndModel(makeName, modelName);
+    }
+    @GetMapping("/vehiclemakes")
+    public List<String> getAllMakes() {
+        return vehicleService.getAllMakes();
+    }
+    @GetMapping("/vehiclemodels/{make}")
+    public List<String> getModelsForMake(@PathVariable("make") String make) {
+        return vehicleService.getModelsForMake(make);
     }
 
     //===========================
@@ -118,6 +124,11 @@ public class HomeController {
         userService.deleteUsers();
         vehicleService.deleteVehicles();
         driverService.deleteDrivers();
+    }
+
+    @DeleteMapping("/deleteVehicleMakesAndModels")
+    public void deleteAllVehicleData() {
+        vehicleService.deleteVehiclesData();
     }
 
     //===========================
