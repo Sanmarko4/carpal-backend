@@ -3,8 +3,8 @@ package lt.codeacademy.javaU8.Autoparkas.Autoparkas.controllers;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.User;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.UserService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.DriverService;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.UserService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleMakeService;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.VehicleService;
 import org.springframework.web.bind.annotation.*;
@@ -16,6 +16,7 @@ public class HomeController {
     DriverService driverService;
     UserService userService;
     VehicleService vehicleService;
+
     VehicleMakeService vehicleMakeService;
 
     public HomeController(DriverService driverService, UserService userService, VehicleService vehicleService, VehicleMakeService vehicleMakeService){
@@ -33,6 +34,14 @@ public class HomeController {
     public List<Vehicle> showVehicles() {
         return vehicleService.findAllVehicles();
     }
+    @GetMapping("/vehiclemakes")
+    public List<String> showAllMakes() {
+        return vehicleMakeService.getVehicleMakes();
+    }
+    @GetMapping("/vehiclemodels/{make}")
+    public List<String> showAvailableModels(@PathVariable("make") String make) {
+        return vehicleMakeService.getModelsForMake(make);
+    }
     @PostMapping("/addvehicle")
     public Vehicle addVehicle(@RequestBody Vehicle vehicle){
         return vehicleService.addVehicle(vehicle);
@@ -48,10 +57,6 @@ public class HomeController {
     @DeleteMapping("/deletevehicle/{id}")
     public void deleteVehicle(@PathVariable Long id) {
         vehicleService.deleteVehicle(id);
-    }
-    @GetMapping("/vehiclemakes")
-    public List<String> getVehicleMakes() {
-        return vehicleMakeService.getVehicleMakes();
     }
 
     //===========================
@@ -114,6 +119,10 @@ public class HomeController {
         vehicleService.deleteVehicles();
         driverService.deleteDrivers();
     }
+
+    //===========================
+    //======== SECURITY =========
+    //===========================
 
 
 }
