@@ -6,7 +6,7 @@ import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 @Entity
-public class User {
+public class Manager {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
@@ -14,13 +14,13 @@ public class User {
     private String firstName, secondName, licenseNumber, licenseExpiryDate;
 
     @OneToMany(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "manager_id")
     private List<Driver> drivers;
 
-    public User() {
+    public Manager() {
     }
 
-    public User(String firstName, String secondName, String licenseNumber, String licenseExpiryDate) {
+    public Manager(String firstName, String secondName, String licenseNumber, String licenseExpiryDate) {
         this.firstName = firstName;
         this.secondName = secondName;
         this.licenseNumber = licenseNumber;

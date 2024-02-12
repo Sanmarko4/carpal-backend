@@ -2,7 +2,7 @@ package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.DriverRepository;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.UserRepository;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.ManagerRepository;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

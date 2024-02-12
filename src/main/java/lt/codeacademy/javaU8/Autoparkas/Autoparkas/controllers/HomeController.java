@@ -1,6 +1,6 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas.controllers;
 
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.User;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Manager;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.services.*;
@@ -14,12 +14,12 @@ public class HomeController {
 
     //Address to test with swagger: http://localhost:8080/swagger-ui/index.html
     DriverService driverService;
-    UserService userService;
+    ManagerService managerService;
     VehicleService vehicleService;
 
-    public HomeController(DriverService driverService, UserService userService, VehicleService vehicleService){
+    public HomeController(DriverService driverService, ManagerService managerService, VehicleService vehicleService){
         this.driverService = driverService;
-        this.userService = userService;
+        this.managerService = managerService;
         this.vehicleService = vehicleService;
     }
 
@@ -66,28 +66,28 @@ public class HomeController {
     }
 
     //===========================
-    //====== USER METHODS =======
+    //==== MANAGER METHODS ======
     //===========================
 
-    @GetMapping("/users")
-    public List<User> showUsers() {
-        return userService.findAllUsers();
+    @GetMapping("/managers")
+    public List<Manager> showManagers() {
+        return managerService.findAllManagers();
     }
-    @PostMapping("/adduser")
-    public void addUser(@RequestBody User user){
-        userService.addUser(user);
+    @PostMapping("/addmanager")
+    public void addmanager(@RequestBody Manager manager){
+        managerService.addManager(manager);
     }
-    @PutMapping("/updateuser")
-    public void updateUser(@RequestBody User user){
-        userService.updateUser(user);
+    @PutMapping("/updatemanager")
+    public void updateManager(@RequestBody Manager manager){
+        managerService.updateManager(manager);
     }
-    @PutMapping("/seperatedriverfromuser")
-    public void seperateDriver(@RequestBody User user){
-        userService.seperateDriver(user);
+    @PutMapping("/seperatedriverfrommanager")
+    public void seperateDriver(@RequestBody Manager manager){
+        managerService.seperateDriver(manager);
     }
-    @DeleteMapping("/deleteuser/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    @DeleteMapping("/deletemanager/{id}")
+    public void deleteManager(@PathVariable Long id) {
+        managerService.deleteManager(id);
     }
 
     //===========================
@@ -121,7 +121,7 @@ public class HomeController {
 
     @DeleteMapping("/deleteall")
     public void deleteAllData() {
-        userService.deleteUsers();
+        managerService.deleteManagers();
         vehicleService.deleteVehicles();
         driverService.deleteDrivers();
     }

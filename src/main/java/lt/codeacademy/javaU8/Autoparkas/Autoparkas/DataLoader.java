@@ -1,10 +1,10 @@
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas;
 
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.User;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Manager;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Vehicle;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.DriverRepository;
-import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.UserRepository;
+import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.ManagerRepository;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.repositories.VehicleRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,7 +23,7 @@ public class DataLoader implements CommandLineRunner {
     DriverRepository driverRepository;
 
     @Autowired
-    UserRepository userRepository;
+    ManagerRepository managerRepository;
 
     @Autowired
     VehicleRepository vehicleRepository;
@@ -48,10 +48,10 @@ public class DataLoader implements CommandLineRunner {
         Driver kazys = new Driver("Kazys", "Kaziukaitis", "14568769", "2024-07-20");
         Driver marius = new Driver("Marius", "Mariukas", "08734521", "2030-02-10");
 
-        User tomas = new User("Tomas", "Razvanovičius", "68596532", "2024-05-20");
-        User agne = new User("Agnė", "Sidorovaitė", "1345768", "2026-05-20");
-        User indre = new User("Indrė", "Razvanovičiutė", "13465276", "2024-07-20");
-        User ilona = new User("Ilona", "Čeponė", "1324565", "2030-02-10");
+        Manager tomas = new Manager("Tomas", "Razvanovičius", "68596532", "2024-05-20");
+        Manager agne = new Manager("Agnė", "Sidorovaitė", "1345768", "2026-05-20");
+        Manager indre = new Manager("Indrė", "Razvanovičiutė", "13465276", "2024-07-20");
+        Manager ilona = new Manager("Ilona", "Čeponė", "1324565", "2030-02-10");
 
         audi.setDriver(jonas);
         bmw5.setDriver(petras);
@@ -72,7 +72,7 @@ public class DataLoader implements CommandLineRunner {
 
         driverRepository.saveAll(Arrays.asList(jonas, petras, kazys, marius));
         vehicleRepository.saveAll(Arrays.asList(audi, bmw3, bmw5, mercedes));
-        userRepository.saveAll(Arrays.asList(tomas, agne, indre, ilona));
+        managerRepository.saveAll(Arrays.asList(tomas, agne, indre, ilona));
 
     }
 }
