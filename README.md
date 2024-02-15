@@ -29,7 +29,7 @@ To set up the backend locally, follow these steps:
 7. The backend server will start running on the specified port.
 
 ## Usage
-- Once the backend server is up and running, the frontend application can communicate with it to perform various operations, or it can be tested using postman.
+- Once the backend server is up and running, the frontend application can communicate with it to perform various operations, or it can be tested using postman or swagger.
 - The frontend will interact with the provided RESTful APIs to manage vehicles and drivers.
 - Users can perform actions such as adding, editing, deleting, and viewing details of vehicles and drivers through the frontend interface.
 - Ensure that the frontend application is configured to communicate with the backend server.
