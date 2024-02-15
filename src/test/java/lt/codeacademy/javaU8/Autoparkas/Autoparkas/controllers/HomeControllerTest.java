@@ -1,4 +1,4 @@
-package lt.codeacademy.javaU8.Autoparkas.Autoparkas;
+package lt.codeacademy.javaU8.Autoparkas.Autoparkas.controllers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.controllers.HomeController;

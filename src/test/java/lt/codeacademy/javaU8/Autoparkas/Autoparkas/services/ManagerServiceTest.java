@@ -1,4 +1,4 @@
-package lt.codeacademy.javaU8.Autoparkas.Autoparkas;
+package lt.codeacademy.javaU8.Autoparkas.Autoparkas.services;
 
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Manager;

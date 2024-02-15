@@ -1,4 +1,4 @@
-package lt.codeacademy.javaU8.Autoparkas.Autoparkas;
+package lt.codeacademy.javaU8.Autoparkas.Autoparkas.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
