@@ -39,7 +39,7 @@ public class ManagerService {
         managerRepository.deleteAll();
     }
 
-    public void seperateDriver(Manager newManager) {
+    public void separateDriver(Manager newManager) {
         managerRepository.findById(newManager.getId()).ifPresent(oldManager -> {
             oldManager.setDrivers(null);
             managerRepository.save(oldManager);

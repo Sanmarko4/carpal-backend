@@ -43,10 +43,10 @@ public class HomeController {
     public void updateVehicle(@RequestBody Vehicle vehicle){
         vehicleService.updateVehicle(vehicle);
     }
-    @PutMapping("/seperatevehiclefromdriver")
+    @PutMapping("/separatevehiclefromdriver")
     @PreAuthorize("hasRole('MANAGER') or hasRole('ADMIN')")
-    public void seperateVehicle(@RequestBody Vehicle vehicle){
-        vehicleService.seperateVehicle(vehicle);
+    public void separateVehicle(@RequestBody Vehicle vehicle){
+        vehicleService.separateVehicle(vehicle);
     }
     @DeleteMapping("/deletevehicle/{id}")
     @PreAuthorize("hasRole('MANAGER') or hasRole('ADMIN')")
@@ -93,10 +93,10 @@ public class HomeController {
     public void updateManager(@RequestBody Manager manager){
         managerService.updateManager(manager);
     }
-    @PutMapping("/seperatedriverfrommanager")
+    @PutMapping("/separatedriverfrommanager")
     @PreAuthorize("hasRole('ADMIN')")
-    public void seperateDriver(@RequestBody Manager manager){
-        managerService.seperateDriver(manager);
+    public void separateDriver(@RequestBody Manager manager){
+        managerService.separateDriver(manager);
     }
     @DeleteMapping("/deletemanager/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -151,10 +151,6 @@ public class HomeController {
     public void deleteAllVehicleData() {
         vehicleService.deleteVehiclesData();
     }
-
-    //===========================
-    //======== SECURITY =========
-    //===========================
 
 
 }

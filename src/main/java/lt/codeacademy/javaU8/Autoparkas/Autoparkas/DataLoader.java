@@ -1,3 +1,4 @@
+/*
 package lt.codeacademy.javaU8.Autoparkas.Autoparkas;
 
 import lt.codeacademy.javaU8.Autoparkas.Autoparkas.entities.Driver;
@@ -76,3 +77,4 @@ public class DataLoader implements CommandLineRunner {
 
     }
 }
+*/

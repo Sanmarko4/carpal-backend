@@ -45,6 +45,12 @@ public class AuthController {
     @Autowired
     JwtUtils jwtUtils;
 
+    @Autowired
+    public AuthController(AuthenticationManager authenticationManager, JwtUtils jwtUtils) {
+        this.authenticationManager = authenticationManager;
+        this.jwtUtils = jwtUtils;
+    }
+
     @PostMapping("/signin")
     public ResponseEntity<?> authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
 
